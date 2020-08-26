@@ -11,6 +11,13 @@ ALootCrate::ALootCrate()
 
 }
 
+int ALootCrate::GiveCurrency(int _givenCurrency)
+{
+	givenCurrency = _givenCurrency;
+	
+	return givenCurrency;
+}
+
 // Called when the game starts or when spawned
 void ALootCrate::BeginPlay()
 {

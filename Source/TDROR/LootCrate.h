@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "LootCrate.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class TDROR_API ALootCrate : public AActor
 {
 	GENERATED_BODY()
@@ -14,6 +14,18 @@ class TDROR_API ALootCrate : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ALootCrate();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Currency")
+		int givenCurrency;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player In Range")
+		bool inOpenRange;	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Curency")
+		bool opened;
+
+	UFUNCTION(BlueprintCallable, Category = "Currency")
+		int GiveCurrency(int _givenCurrency);
+
 
 protected:
 	// Called when the game starts or when spawned
