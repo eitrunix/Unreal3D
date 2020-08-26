@@ -16,17 +16,17 @@ public:
 	ALootCrate();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Currency")
-		int givenCurrency;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player In Range")
-		bool inOpenRange;	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Curency")
-		bool opened;
+		int moneyInChest;
 
 	UFUNCTION(BlueprintCallable, Category = "Currency")
-		int GiveCurrency(int _givenCurrency);
+		int GiveLoot(int _currencyGained);
 
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LootBox")
+		bool inOpenRange;	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LootBox")
+		bool opened = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LootBox")
+		bool givenLoot = false;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
