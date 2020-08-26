@@ -13,12 +13,30 @@ ALootCrate::ALootCrate()
 
 int ALootCrate::GiveLoot(int _currencyGained)
 {
-	moneyInChest = _currencyGained;
+	moneyInChest += _currencyGained;
 	if (opened)
 	{
 		givenLoot = true;
 	}
-	return moneyInChest;
+	return _currencyGained;
+}
+
+bool ALootCrate::SetOpened()
+{
+	if(!opened)
+	{
+		opened = true;
+	}
+	return opened;
+}
+
+bool ALootCrate::SetLootGiven()
+{
+	if(!givenLoot)
+	{
+		givenLoot = true;
+	}
+	return givenLoot;
 }
 
 // Called when the game starts or when spawned

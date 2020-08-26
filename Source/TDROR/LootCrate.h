@@ -19,7 +19,11 @@ public:
 		int moneyInChest;
 
 	UFUNCTION(BlueprintCallable, Category = "Currency")
-		int GiveLoot(int _currencyGained);
+		int GiveLoot(int _currencyGained);	
+	UFUNCTION(BlueprintCallable, Category = "Currency")
+		bool SetOpened();	
+	UFUNCTION(BlueprintCallable, Category = "Currency")
+		bool SetLootGiven();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LootBox")
 		bool inOpenRange;	
