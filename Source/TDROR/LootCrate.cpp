@@ -11,7 +11,6 @@ ALootCrate::ALootCrate()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 int ALootCrate::Loot()
@@ -21,19 +20,33 @@ int ALootCrate::Loot()
 	switch (type)
 	{
 	case CashBox:
+		baseMoneyInChest = 8;
 		GiveMoney();
-		return moneyInChest;
+		return baseMoneyInChest;
 		break;
 	case Small:
+		baseChestCost = 10;
+
 		GiveItemLoot();
 		SpawnObject(GetActorLocation(), GetActorRotation());
-		return chestCost;
+		return baseChestCost;
 		break;
 	case Medium:
-		return 0;
+		baseChestCost = 20;
+
+		GiveItemLoot();
+		SpawnObject(GetActorLocation(), GetActorRotation());
+
+		return baseChestCost;
 		break;
 	case Large:
-		return 0;
+		baseChestCost = 30;
+
+		GiveItemLoot();
+		SpawnObject(GetActorLocation(), GetActorRotation());
+
+		return baseChestCost;
+
 		break;
 	default:
 		return 0;
@@ -42,7 +55,7 @@ int ALootCrate::Loot()
 }
 int ALootCrate::GiveMoney()
 {
-	int tmpMoney = moneyInChest;
+	int tmpMoney = baseMoneyInChest;
 	if (opened)
 	{
 		SetLooted();
@@ -71,7 +84,7 @@ bool ALootCrate::SetLooted()
 
 int ALootCrate::GiveItemLoot()
 {
-	int tmpCost = chestCost;
+	int tmpCost = baseChestCost;
 	if (opened)
 	{
 		SetLooted();
@@ -83,19 +96,55 @@ int ALootCrate::GiveItemLoot()
 void ALootCrate::SpawnObject(FVector Loc, FRotator Rot)
 {
 	FVector newLoc;
+	TSubclassOf<AActor> tempItem;
+
+	tempItem = GetItemFromArray();
 	newLoc = Loc;
 
 	newLoc.X *= 1.4;
 	newLoc.Z *= 1.4;
 	FActorSpawnParameters SpawnParams;
-	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(spawnedItem, newLoc, Rot, SpawnParams);
+	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(tempItem, newLoc, Rot, SpawnParams);
+}
+
+TSubclassOf<AActor> ALootCrate::GetItemFromArray()
+{
+	int Rand;
+	Rand = FMath::RandRange(0, 4);
+
+	for (int i = 0; i < spawnedItemArray.Num(); i++)
+	{
+		if (i == Rand)
+		{
+			return spawnedItemArray[i];
+		}
+	}
+	return 0;
 }
 
 // Called when the game starts or when spawned
 void ALootCrate::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	switch (type)
+	{
+	case CashBox:
+		baseMoneyInChest = 8;
+		break;
+	case Small:
+		baseChestCost = 10;
+		break;
+	case Medium:
+		baseChestCost = 20;
+		break;
+	case Large:
+		baseChestCost = 30;
+		break;
+	default:
+		break;
+
+	}
+
 }
 
 // Called every frame

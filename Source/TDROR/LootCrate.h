@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Math/UnrealMathUtility.h"
+
 #include "LootCrate.generated.h"
 
 UENUM()
@@ -26,9 +28,9 @@ public:
 	ALootCrate();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Currency")
-		int moneyInChest;
+		int baseMoneyInChest;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Currency")
-		int chestCost;
+		int baseChestCost;
 
 	UFUNCTION(BlueprintCallable, Category = "Currency")
 		int GiveMoney();	
@@ -50,10 +52,12 @@ public:
 		TEnumAsByte<CrateType> type;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Loot")
-		TSubclassOf<AActor> spawnedItem;
+		TArray<TSubclassOf<AActor>> spawnedItemArray;
 
 	UFUNCTION(BlueprintCallable, Category = "Item Loot")
 		void SpawnObject(FVector Loc, FRotator Rot);
+	UFUNCTION(BlueprintCallable, Category = "Item Loot")
+		TSubclassOf<AActor> GetItemFromArray();
 
 protected:
 	// Called when the game starts or when spawned
