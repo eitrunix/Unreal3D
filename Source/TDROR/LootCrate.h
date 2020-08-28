@@ -49,6 +49,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Loot Box")
 		TEnumAsByte<CrateType> type;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Loot")
+		TSubclassOf<AActor> spawnedItem;
+
+	UFUNCTION(BlueprintCallable, Category = "Item Loot")
+		void SpawnObject(FVector Loc, FRotator Rot);
 
 protected:
 	// Called when the game starts or when spawned

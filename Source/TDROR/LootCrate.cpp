@@ -2,6 +2,9 @@
 
 
 #include "LootCrate.h"
+#include <StaticMeshResources.h>
+
+
 
 // Sets default values
 ALootCrate::ALootCrate()
@@ -23,6 +26,7 @@ int ALootCrate::Loot()
 		break;
 	case Small:
 		GiveItemLoot();
+		SpawnObject(GetActorLocation(), GetActorRotation());
 		return chestCost;
 		break;
 	case Medium:
@@ -38,10 +42,11 @@ int ALootCrate::Loot()
 }
 int ALootCrate::GiveMoney()
 {
+	int tmpMoney = moneyInChest;
 	if (opened)
 	{
 		SetLooted();
-		return moneyInChest;
+		return tmpMoney;
 	}
 	return 0;
 }
@@ -66,12 +71,24 @@ bool ALootCrate::SetLooted()
 
 int ALootCrate::GiveItemLoot()
 {
-	chestCost = 0 - chestCost;
+	int tmpCost = chestCost;
 	if (opened)
 	{
 		SetLooted();
+		return tmpCost;
 	}
-	return chestCost;
+	return 0;
+}
+
+void ALootCrate::SpawnObject(FVector Loc, FRotator Rot)
+{
+	FVector newLoc;
+	newLoc = Loc;
+
+	newLoc.X *= 1.4;
+	newLoc.Z *= 1.4;
+	FActorSpawnParameters SpawnParams;
+	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(spawnedItem, newLoc, Rot, SpawnParams);
 }
 
 // Called when the game starts or when spawned
