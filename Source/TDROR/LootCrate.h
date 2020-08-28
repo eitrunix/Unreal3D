@@ -6,6 +6,16 @@
 #include "GameFramework/Actor.h"
 #include "LootCrate.generated.h"
 
+UENUM()
+enum CrateType
+{
+	CashBox UMETA(DisplayName = "Cash Box"),
+	Small UMETA(DisplayName = "Small Crate"),
+	Medium UMETA(DisplayName = "Medium Crate"),
+	Large UMETA(DisplayName = "Large Crate"),
+
+};
+
 UCLASS(Blueprintable)
 class TDROR_API ALootCrate : public AActor
 {
@@ -17,20 +27,29 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Currency")
 		int moneyInChest;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Currency")
+		int chestCost;
 
 	UFUNCTION(BlueprintCallable, Category = "Currency")
-		int GiveLoot(int _currencyGained);	
+		int GiveMoney();	
+	UFUNCTION(BlueprintCallable, Category = "LootBox")
+		int Loot();
 	UFUNCTION(BlueprintCallable, Category = "Currency")
 		bool SetOpened();	
 	UFUNCTION(BlueprintCallable, Category = "Currency")
-		bool SetLootGiven();
-
+		bool SetLooted();
+	UFUNCTION(BlueprintCallable, Category = "LootBox")
+		int GiveItemLoot();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LootBox")
 		bool inOpenRange;	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LootBox")
 		bool opened = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LootBox")
 		bool givenLoot = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Loot Box")
+		TEnumAsByte<CrateType> type;
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -40,3 +59,5 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 };
+
+

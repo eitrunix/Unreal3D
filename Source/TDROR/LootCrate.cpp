@@ -11,14 +11,39 @@ ALootCrate::ALootCrate()
 
 }
 
-int ALootCrate::GiveLoot(int _currencyGained)
+int ALootCrate::Loot()
 {
-	moneyInChest += _currencyGained;
+	SetOpened();
+
+	switch (type)
+	{
+	case CashBox:
+		GiveMoney();
+		return moneyInChest;
+		break;
+	case Small:
+		GiveItemLoot();
+		return chestCost;
+		break;
+	case Medium:
+		return 0;
+		break;
+	case Large:
+		return 0;
+		break;
+	default:
+		return 0;
+		break;
+	}
+}
+int ALootCrate::GiveMoney()
+{
 	if (opened)
 	{
-		givenLoot = true;
+		SetLooted();
+		return moneyInChest;
 	}
-	return _currencyGained;
+	return 0;
 }
 
 bool ALootCrate::SetOpened()
@@ -30,13 +55,23 @@ bool ALootCrate::SetOpened()
 	return opened;
 }
 
-bool ALootCrate::SetLootGiven()
+bool ALootCrate::SetLooted()
 {
 	if(!givenLoot)
 	{
 		givenLoot = true;
 	}
 	return givenLoot;
+}
+
+int ALootCrate::GiveItemLoot()
+{
+	chestCost = 0 - chestCost;
+	if (opened)
+	{
+		SetLooted();
+	}
+	return chestCost;
 }
 
 // Called when the game starts or when spawned
