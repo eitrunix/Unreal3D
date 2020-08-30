@@ -99,7 +99,7 @@ void ALootCrate::SpawnObject(FVector Loc, FRotator Rot)
 
 	tempItem = GetItemFromArray();
 	FActorSpawnParameters SpawnParams;
-	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(tempItem, Loc, Rot, SpawnParams);
+	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(tempItem, FVector(Loc.X * .4f, Loc.Y, Loc.Z * 1.4f), Rot, SpawnParams);
 }
 
 TSubclassOf<AActor> ALootCrate::GetItemFromArray()
