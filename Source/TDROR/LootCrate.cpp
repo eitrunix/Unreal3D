@@ -11,6 +11,7 @@ ALootCrate::ALootCrate()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+		
 }
 
 int ALootCrate::Loot()
@@ -44,7 +45,6 @@ int ALootCrate::Loot()
 
 		GiveItemLoot();
 		SpawnObject(GetActorLocation(), GetActorRotation());
-
 		return baseChestCost;
 
 		break;
@@ -126,25 +126,7 @@ TSubclassOf<AActor> ALootCrate::GetItemFromArray()
 void ALootCrate::BeginPlay()
 {
 	Super::BeginPlay();
-	switch (type)
-	{
-	case CashBox:
-		baseMoneyInChest = 8;
-		break;
-	case Small:
-		baseChestCost = 10;
-		break;
-	case Medium:
-		baseChestCost = 20;
-		break;
-	case Large:
-		baseChestCost = 30;
-		break;
-	default:
-		break;
-
-	}
-
+	
 }
 
 // Called every frame
