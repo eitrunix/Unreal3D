@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "SpawnPointComponent.h"
 #include "SpawningDirector.generated.h"
 
 UCLASS()

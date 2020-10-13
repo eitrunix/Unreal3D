@@ -110,7 +110,7 @@ void ALootCrate::SpawnObject(FVector Loc, FRotator Rot)
 TSubclassOf<AActor> ALootCrate::GetItemFromArray()
 {
 	int Rand;
-	Rand = FMath::RandRange(0, 4);
+	Rand = FMath::RandRange(0, spawnedItemArray.Num() - 1);
 
 	for (int i = 0; i < spawnedItemArray.Num(); i++)
 	{
