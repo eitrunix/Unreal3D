@@ -25,6 +25,8 @@ public:
 		float baseHealth;	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats | Base")
 		float baseDamage;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats | Spawn Cost")
+		float baseSpawnCost;
 
 protected:
 	// Called when the game starts
