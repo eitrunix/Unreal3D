@@ -15,6 +15,11 @@ UMonster_StatCard::UMonster_StatCard()
 
 
 
+int UMonster_StatCard::getSpawnCost()
+{
+	return baseSpawnCost;
+}
+
 // Called when the game starts
 void UMonster_StatCard::BeginPlay()
 {

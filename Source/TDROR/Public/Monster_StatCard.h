@@ -26,7 +26,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats | Base")
 		float baseDamage;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats | Spawn Cost")
-		float baseSpawnCost;
+		int baseSpawnCost;
+
+	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
+		int getSpawnCost();
 
 protected:
 	// Called when the game starts

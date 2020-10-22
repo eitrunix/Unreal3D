@@ -2,6 +2,7 @@
 
 
 #include "SpawnPointComponent.h"
+#include "Public\Monster_StatCard.h"
 #include <StaticMeshResources.h>
 
 // Sets default values for this component's properties
@@ -13,7 +14,6 @@ USpawnPointComponent::USpawnPointComponent()
 
 	// ...
 }
-
 TSubclassOf<AActor> USpawnPointComponent::EnemyFromArray()
 {
 
@@ -24,23 +24,22 @@ TSubclassOf<AActor> USpawnPointComponent::EnemyFromArray()
 		return enemyListArray[Rand];
 	}
 
-	//for (int i = 0; i < enemyListArray.Num(); i++)
-	//{
-	//	if (i == Rand)
-	//	{
-	//		return enemyListArray[i];
-	//	}
-	//}
 	return 0;
 }
 
-AActor* USpawnPointComponent::SpawnEnemy(FVector Loc, FRotator Rot)
+AActor* USpawnPointComponent::SpawnEnemy(TSubclassOf<AActor> enemy, FVector Loc, FRotator Rot)
 {
-	TSubclassOf<AActor> tmpEnemy;
-	tmpEnemy = EnemyFromArray();
 	FActorSpawnParameters SpawnParams;
-	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(tmpEnemy, Loc, Rot, SpawnParams);
+	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(pickedEnemy, Loc, Rot, SpawnParams);
 	return spawnedItemRef;
+}
+
+TSubclassOf<AActor> USpawnPointComponent::PickEnemy()
+{
+	pickedEnemy = EnemyFromArray();
+	UMonster_StatCard tmpCard;
+	tmpCard.getSpawnCost();
+	return pickedEnemy;
 }
 
 // Called when the game starts

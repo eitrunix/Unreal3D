@@ -33,7 +33,11 @@ public:
 		TSubclassOf<AActor> EnemyFromArray();
 
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		AActor* SpawnEnemy(FVector Loc, FRotator Rot);
+		AActor* SpawnEnemy(TSubclassOf<AActor> enemy, FVector Loc, FRotator Rot);
+	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
+		TSubclassOf<AActor> PickEnemy();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
+		TSubclassOf<AActor> pickedEnemy;
 
 protected:
 	// Called when the game starts
