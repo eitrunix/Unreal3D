@@ -2,7 +2,6 @@
 
 
 #include "SpawnPointComponent.h"
-#include "Public\Monster_StatCard.h"
 #include <StaticMeshResources.h>
 
 // Sets default values for this component's properties
@@ -27,19 +26,43 @@ TSubclassOf<AActor> USpawnPointComponent::EnemyFromArray()
 	return 0;
 }
 
-AActor* USpawnPointComponent::SpawnEnemy(TSubclassOf<AActor> enemy, FVector Loc, FRotator Rot)
+AActor* USpawnPointComponent::SpawnEnemy(FVector Loc, FRotator Rot)
 {
 	FActorSpawnParameters SpawnParams;
-	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(pickedEnemy, Loc, Rot, SpawnParams);
+	TSubclassOf<AActor> EnemyToSpawn;
+	EnemyToSpawn = enemyToBeSpawned[0];
+	RemoveFromEnemyToSpawnList();
+	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(EnemyToSpawn, Loc, Rot, SpawnParams);
 	return spawnedItemRef;
 }
 
-TSubclassOf<AActor> USpawnPointComponent::PickEnemy()
+void USpawnPointComponent::AddEnemyToSpawnList()
+{
+	enemyToBeSpawned.Add(pickedEnemy);
+}
+
+void USpawnPointComponent::RemoveFromEnemyToSpawnList()
+{
+	if (enemyToBeSpawned.Contains(pickedEnemy))
+	{
+		enemyToBeSpawned.Remove(pickedEnemy);
+	}
+}
+
+TSubclassOf<AActor> USpawnPointComponent::GetFromEnemyToSpawnList()
+{
+	if (enemyListArray.Contains(pickedEnemy))
+	{
+		return enemyToBeSpawned[0];
+	}
+
+	return 0;
+}
+
+void USpawnPointComponent::PickEnemy()
 {
 	pickedEnemy = EnemyFromArray();
-	UMonster_StatCard tmpCard;
-	tmpCard.getSpawnCost();
-	return pickedEnemy;
+	AddEnemyToSpawnList();
 }
 
 // Called when the game starts

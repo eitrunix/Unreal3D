@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Public\Monster_StatCard.h"
 #include "SpawnPointComponent.generated.h"
 
 UENUM()
@@ -27,17 +28,30 @@ public:
 	USpawnPointComponent();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
-		TArray<TSubclassOf<AActor>> enemyListArray;
+		TArray<TSubclassOf<AActor>> enemyListArray;	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
+		TArray<TSubclassOf<AActor>> enemyToBeSpawned;
 
 	UFUNCTION(BlueprintCallable, Category = "Enenmy List")
 		TSubclassOf<AActor> EnemyFromArray();
 
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		AActor* SpawnEnemy(TSubclassOf<AActor> enemy, FVector Loc, FRotator Rot);
+		AActor* SpawnEnemy(FVector Loc, FRotator Rot);
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		TSubclassOf<AActor> PickEnemy();
+		void AddEnemyToSpawnList();	
+	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
+		void RemoveFromEnemyToSpawnList();	
+	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
+		TSubclassOf<AActor> GetFromEnemyToSpawnList();
+
+	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
+		void PickEnemy();
+	UPROPERTY(BlueprintReadWrite, Category = "Enemy Spawn")
+		int tmpSpawnCost;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
 		TSubclassOf<AActor> pickedEnemy;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "StatCard")
+		UMonster_StatCard* StatCard;
 
 protected:
 	// Called when the game starts
