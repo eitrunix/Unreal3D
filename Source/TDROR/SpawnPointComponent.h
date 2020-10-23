@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Public\Monster_StatCard.h"
 #include "SpawnPointComponent.generated.h"
 
 UENUM()
@@ -28,14 +27,19 @@ public:
 	USpawnPointComponent();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
+<<<<<<< HEAD
 		TArray<AActor*> enemyListArray;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
 		TArray<AActor*> enemyToBeSpawned;
+=======
+		TArray<TSubclassOf<AActor>> enemyListArray;
+>>>>>>> parent of 5dc97fb... spawn Point Stuff, Almost there -_-
 
 	UFUNCTION(BlueprintCallable, Category = "Enenmy List")
 		AActor* EnemyFromArray();
 
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
+<<<<<<< HEAD
 		AActor* SpawnEnemy(FVector Loc, FRotator Rot);	
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
 		AActor* AddEnemyToList();
@@ -50,6 +54,13 @@ public:
 		void PickEnemy();
 	UPROPERTY(BlueprintReadWrite, Category = "Enemy Spawn")
 		int tmpSpawnCost;	
+=======
+		AActor* SpawnEnemy(TSubclassOf<AActor> enemy, FVector Loc, FRotator Rot);
+	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
+		TSubclassOf<AActor> PickEnemy();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
+		TSubclassOf<AActor> pickedEnemy;
+>>>>>>> parent of 5dc97fb... spawn Point Stuff, Almost there -_-
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
 		AActor* pickedEnemy;
