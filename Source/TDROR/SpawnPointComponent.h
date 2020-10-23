@@ -28,9 +28,13 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
 <<<<<<< HEAD
+<<<<<<< HEAD
 		TArray<AActor*> enemyListArray;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
 		TArray<AActor*> enemyToBeSpawned;
+=======
+		TArray<TSubclassOf<AActor>> enemyListArray;
+>>>>>>> parent of 5dc97fb... spawn Point Stuff, Almost there -_-
 =======
 		TArray<TSubclassOf<AActor>> enemyListArray;
 >>>>>>> parent of 5dc97fb... spawn Point Stuff, Almost there -_-
@@ -39,6 +43,7 @@ public:
 		AActor* EnemyFromArray();
 
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
+<<<<<<< HEAD
 <<<<<<< HEAD
 		AActor* SpawnEnemy(FVector Loc, FRotator Rot);	
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
@@ -54,6 +59,13 @@ public:
 		void PickEnemy();
 	UPROPERTY(BlueprintReadWrite, Category = "Enemy Spawn")
 		int tmpSpawnCost;	
+=======
+		AActor* SpawnEnemy(TSubclassOf<AActor> enemy, FVector Loc, FRotator Rot);
+	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
+		TSubclassOf<AActor> PickEnemy();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
+		TSubclassOf<AActor> pickedEnemy;
+>>>>>>> parent of 5dc97fb... spawn Point Stuff, Almost there -_-
 =======
 		AActor* SpawnEnemy(TSubclassOf<AActor> enemy, FVector Loc, FRotator Rot);
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")

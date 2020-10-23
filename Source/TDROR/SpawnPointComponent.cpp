@@ -28,6 +28,7 @@ AActor* USpawnPointComponent::EnemyFromArray()
 }
 
 AActor* USpawnPointComponent::SpawnEnemy(TSubclassOf<AActor> enemy, FVector Loc, FRotator Rot)
+<<<<<<< HEAD
 {
 	//FActorSpawnParameters SpawnParams;
 	//TSubclassOf<AActor> EnemyToSpawn;
@@ -75,6 +76,20 @@ void USpawnPointComponent::PickEnemy()
 	pickedEnemy = EnemyFromArray();
 	AddEnemyToSpawnList(pickedEnemy);
 =======
+	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(pickedEnemy, Loc, Rot, SpawnParams);
+	return spawnedItemRef;
+}
+
+TSubclassOf<AActor> USpawnPointComponent::PickEnemy()
+{
+	pickedEnemy = EnemyFromArray();
+	UMonster_StatCard tmpCard;
+	tmpCard.getSpawnCost();
+	return pickedEnemy;
+>>>>>>> parent of 5dc97fb... spawn Point Stuff, Almost there -_-
+=======
+{
+	FActorSpawnParameters SpawnParams;
 	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(pickedEnemy, Loc, Rot, SpawnParams);
 	return spawnedItemRef;
 }
