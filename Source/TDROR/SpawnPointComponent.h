@@ -38,7 +38,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
 		AActor* SpawnEnemy(FVector Loc, FRotator Rot);
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		void AddEnemyToSpawnList();	
+		void AddEnemyToSpawnList(TSubclassOf<AActor> enemyToAdd);
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
 		void RemoveFromEnemyToSpawnList();	
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
@@ -47,12 +47,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
 		void PickEnemy();
 	UPROPERTY(BlueprintReadWrite, Category = "Enemy Spawn")
-		int tmpSpawnCost;
+		int tmpSpawnCost;	
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
 		TSubclassOf<AActor> pickedEnemy;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "StatCard")
-		UMonster_StatCard* StatCard;
-
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

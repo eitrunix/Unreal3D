@@ -36,9 +36,9 @@ AActor* USpawnPointComponent::SpawnEnemy(FVector Loc, FRotator Rot)
 	return spawnedItemRef;
 }
 
-void USpawnPointComponent::AddEnemyToSpawnList()
+void USpawnPointComponent::AddEnemyToSpawnList(TSubclassOf<AActor> enemyToAdd)
 {
-	enemyToBeSpawned.Add(pickedEnemy);
+	enemyToBeSpawned.Add(enemyToAdd);
 }
 
 void USpawnPointComponent::RemoveFromEnemyToSpawnList()
@@ -62,7 +62,7 @@ TSubclassOf<AActor> USpawnPointComponent::GetFromEnemyToSpawnList()
 void USpawnPointComponent::PickEnemy()
 {
 	pickedEnemy = EnemyFromArray();
-	AddEnemyToSpawnList();
+	AddEnemyToSpawnList(pickedEnemy);
 }
 
 // Called when the game starts
