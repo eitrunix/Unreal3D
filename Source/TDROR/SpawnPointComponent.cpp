@@ -13,7 +13,7 @@ USpawnPointComponent::USpawnPointComponent()
 
 	// ...
 }
-TSubclassOf<AActor> USpawnPointComponent::EnemyFromArray()
+AActor* USpawnPointComponent::EnemyFromArray()
 {
 
 	int Rand;
@@ -28,15 +28,24 @@ TSubclassOf<AActor> USpawnPointComponent::EnemyFromArray()
 
 AActor* USpawnPointComponent::SpawnEnemy(FVector Loc, FRotator Rot)
 {
-	FActorSpawnParameters SpawnParams;
-	TSubclassOf<AActor> EnemyToSpawn;
-	EnemyToSpawn = enemyToBeSpawned[0];
-	RemoveFromEnemyToSpawnList();
-	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(EnemyToSpawn, Loc, Rot, SpawnParams);
-	return spawnedItemRef;
+	//FActorSpawnParameters SpawnParams;
+	//TSubclassOf<AActor> EnemyToSpawn;
+	//EnemyToSpawn = enemyToBeSpawned[0];
+	//RemoveFromEnemyToSpawnList();
+	//AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(EnemyToSpawn, Loc, Rot, SpawnParams);
+	//return spawnedItemRef;
+	return 0;
 }
 
-void USpawnPointComponent::AddEnemyToSpawnList(TSubclassOf<AActor> enemyToAdd)
+AActor* USpawnPointComponent::AddEnemyToList()
+{
+	FActorSpawnParameters SpawnParams;
+	AActor* EnemyToSpawn;
+	EnemyToSpawn = enemyToBeSpawned[0];
+	return EnemyToSpawn;
+}
+
+void USpawnPointComponent::AddEnemyToSpawnList(AActor* enemyToAdd)
 {
 	enemyToBeSpawned.Add(enemyToAdd);
 }
@@ -49,7 +58,7 @@ void USpawnPointComponent::RemoveFromEnemyToSpawnList()
 	}
 }
 
-TSubclassOf<AActor> USpawnPointComponent::GetFromEnemyToSpawnList()
+AActor* USpawnPointComponent::GetFromEnemyToSpawnList()
 {
 	if (enemyListArray.Contains(pickedEnemy))
 	{

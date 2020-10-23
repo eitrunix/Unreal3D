@@ -28,21 +28,23 @@ public:
 	USpawnPointComponent();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
-		TArray<TSubclassOf<AActor>> enemyListArray;	
+		TArray<AActor*> enemyListArray;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
-		TArray<TSubclassOf<AActor>> enemyToBeSpawned;
+		TArray<AActor*> enemyToBeSpawned;
 
 	UFUNCTION(BlueprintCallable, Category = "Enenmy List")
-		TSubclassOf<AActor> EnemyFromArray();
+		AActor* EnemyFromArray();
 
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		AActor* SpawnEnemy(FVector Loc, FRotator Rot);
+		AActor* SpawnEnemy(FVector Loc, FRotator Rot);	
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		void AddEnemyToSpawnList(TSubclassOf<AActor> enemyToAdd);
+		AActor* AddEnemyToList();
+	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
+		void AddEnemyToSpawnList(AActor* enemyToAdd);
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
 		void RemoveFromEnemyToSpawnList();	
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		TSubclassOf<AActor> GetFromEnemyToSpawnList();
+		AActor* GetFromEnemyToSpawnList();
 
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
 		void PickEnemy();
@@ -50,7 +52,7 @@ public:
 		int tmpSpawnCost;	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
-		TSubclassOf<AActor> pickedEnemy;
+		AActor* pickedEnemy;
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
