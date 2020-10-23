@@ -14,7 +14,7 @@ USpawnPointComponent::USpawnPointComponent()
 
 	// ...
 }
-AActor* USpawnPointComponent::EnemyFromArray()
+TSubclassOf<AActor> USpawnPointComponent::EnemyFromArray()
 {
 
 	int Rand;
@@ -28,66 +28,6 @@ AActor* USpawnPointComponent::EnemyFromArray()
 }
 
 AActor* USpawnPointComponent::SpawnEnemy(TSubclassOf<AActor> enemy, FVector Loc, FRotator Rot)
-<<<<<<< HEAD
-{
-	//FActorSpawnParameters SpawnParams;
-	//TSubclassOf<AActor> EnemyToSpawn;
-	//EnemyToSpawn = enemyToBeSpawned[0];
-	//RemoveFromEnemyToSpawnList();
-	//AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(EnemyToSpawn, Loc, Rot, SpawnParams);
-	//return spawnedItemRef;
-	return 0;
-}
-
-AActor* USpawnPointComponent::AddEnemyToList()
-{
-	FActorSpawnParameters SpawnParams;
-<<<<<<< HEAD
-	AActor* EnemyToSpawn;
-	EnemyToSpawn = enemyToBeSpawned[0];
-	return EnemyToSpawn;
-}
-
-void USpawnPointComponent::AddEnemyToSpawnList(AActor* enemyToAdd)
-{
-	enemyToBeSpawned.Add(enemyToAdd);
-}
-
-void USpawnPointComponent::RemoveFromEnemyToSpawnList()
-{
-	if (enemyToBeSpawned.Contains(pickedEnemy))
-	{
-		enemyToBeSpawned.Remove(pickedEnemy);
-	}
-}
-
-AActor* USpawnPointComponent::GetFromEnemyToSpawnList()
-{
-	if (enemyListArray.Contains(pickedEnemy))
-	{
-		return enemyToBeSpawned[0];
-	}
-
-	return 0;
-}
-
-void USpawnPointComponent::PickEnemy()
-{
-	pickedEnemy = EnemyFromArray();
-	AddEnemyToSpawnList(pickedEnemy);
-=======
-	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(pickedEnemy, Loc, Rot, SpawnParams);
-	return spawnedItemRef;
-}
-
-TSubclassOf<AActor> USpawnPointComponent::PickEnemy()
-{
-	pickedEnemy = EnemyFromArray();
-	UMonster_StatCard tmpCard;
-	tmpCard.getSpawnCost();
-	return pickedEnemy;
->>>>>>> parent of 5dc97fb... spawn Point Stuff, Almost there -_-
-=======
 {
 	FActorSpawnParameters SpawnParams;
 	AActor* spawnedItemRef = GetWorld()->SpawnActor<AActor>(pickedEnemy, Loc, Rot, SpawnParams);
@@ -100,7 +40,6 @@ TSubclassOf<AActor> USpawnPointComponent::PickEnemy()
 	UMonster_StatCard tmpCard;
 	tmpCard.getSpawnCost();
 	return pickedEnemy;
->>>>>>> parent of 5dc97fb... spawn Point Stuff, Almost there -_-
 }
 
 // Called when the game starts

@@ -27,55 +27,18 @@ public:
 	USpawnPointComponent();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
-<<<<<<< HEAD
-<<<<<<< HEAD
-		TArray<AActor*> enemyListArray;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
-		TArray<AActor*> enemyToBeSpawned;
-=======
 		TArray<TSubclassOf<AActor>> enemyListArray;
->>>>>>> parent of 5dc97fb... spawn Point Stuff, Almost there -_-
-=======
-		TArray<TSubclassOf<AActor>> enemyListArray;
->>>>>>> parent of 5dc97fb... spawn Point Stuff, Almost there -_-
 
 	UFUNCTION(BlueprintCallable, Category = "Enenmy List")
-		AActor* EnemyFromArray();
+		TSubclassOf<AActor> EnemyFromArray();
 
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-<<<<<<< HEAD
-<<<<<<< HEAD
-		AActor* SpawnEnemy(FVector Loc, FRotator Rot);	
-	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		AActor* AddEnemyToList();
-	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		void AddEnemyToSpawnList(AActor* enemyToAdd);
-	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		void RemoveFromEnemyToSpawnList();	
-	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		AActor* GetFromEnemyToSpawnList();
-
-	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		void PickEnemy();
-	UPROPERTY(BlueprintReadWrite, Category = "Enemy Spawn")
-		int tmpSpawnCost;	
-=======
 		AActor* SpawnEnemy(TSubclassOf<AActor> enemy, FVector Loc, FRotator Rot);
 	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
 		TSubclassOf<AActor> PickEnemy();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
 		TSubclassOf<AActor> pickedEnemy;
->>>>>>> parent of 5dc97fb... spawn Point Stuff, Almost there -_-
-=======
-		AActor* SpawnEnemy(TSubclassOf<AActor> enemy, FVector Loc, FRotator Rot);
-	UFUNCTION(BlueprintCallable, Category = "Enemy Spawn")
-		TSubclassOf<AActor> PickEnemy();
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
-		TSubclassOf<AActor> pickedEnemy;
->>>>>>> parent of 5dc97fb... spawn Point Stuff, Almost there -_-
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy List")
-		AActor* pickedEnemy;
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
